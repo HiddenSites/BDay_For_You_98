@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Spawn balloons every 800ms
-      setInterval(spawnBalloon, 1000);
+      setInterval(spawnBalloon, 1500);
       correct = true;
     } else {
       // Incorrect
@@ -102,7 +102,7 @@ function handleMove(e) {
       }
     if (!cardOpened) {
       cardOpened = true;
-      setInterval(() => spawnBalloon(true), 2000);
+      setInterval(() => spawnBalloon(true), 3500);
       setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
