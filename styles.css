@@ -212,13 +212,15 @@ body {
   font-size: 1.2rem; /* optional, for better text consistency */
   line-height: 1.4;
   min-height: 3rem; /* reserve consistent vertical space for text */
+  white-space: pre-line;
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
 /* Responsive image sizing with relative height */
 .carousel-slide img {
   width: auto;
   max-width: 65%;
-  max-height: 25vh;  /* relative max height */
+  max-height: 20vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
   margin-top: 1rem;
@@ -232,9 +234,10 @@ body {
   background: #ffb6c1;
   border-radius: 12px;
   cursor: pointer;
+  color: #000;
 }
 
-.carousel-nav button:hover {
+.carousel-nav button:active {
   background: #ffa6b8;
 }
 
