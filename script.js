@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Spawn balloons every 800ms
-      setInterval(spawnBalloon, 700);
+      setInterval(spawnBalloon, 1000);
       correct = true;
     } else {
       // Incorrect
@@ -102,7 +102,7 @@ function handleMove(e) {
       }
     if (!cardOpened) {
       cardOpened = true;
-      setInterval(() => spawnBalloon(true), 1500);
+      setInterval(() => spawnBalloon(true), 2000);
       setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
@@ -138,11 +138,6 @@ function spawnBalloon(useImage = false) {
   balloon.className = 'balloon';
   balloon.style.position = 'absolute';
   balloon.style.top = '-100px'; // Start just above the screen
-  let leftPos = Math.random() * window.innerWidth - 40;
-  if ((window.innerWidth - leftPos) < 40) {
-    leftPos = window.innerWidth - 40;
-  }
-  balloon.style.left = leftPos + 'px';
 
   if (useImage) {
     const imageSources = [
@@ -168,18 +163,26 @@ function spawnBalloon(useImage = false) {
   } else {
     balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
   }
+ document.body.appendChild(balloon);
 
-  document.body.appendChild(balloon);
+  // Use requestAnimationFrame to ensure styles are applied first
+  requestAnimationFrame(() => {
+    const width = balloon.offsetWidth;
+    const maxLeft = window.innerWidth - width;
+    const leftPos = Math.random() * maxLeft;
 
-  const screenHeight = Math.max(window.innerHeight, document.documentElement.clientHeight);
+    balloon.style.left = `${leftPos}px`;
 
-  gsap.to(balloon, {
-    y: screenHeight + 150, // Fall well past the screen bottom
-    duration: 6 + Math.random() * 10,
-    ease: 'power1.out',
-    onComplete: () => {
-      balloon.remove();
-    }
+    const screenHeight = Math.max(window.innerHeight, document.documentElement.clientHeight);
+  
+    gsap.to(balloon, {
+      y: screenHeight + 150, // Fall well past the screen bottom
+      duration: 6 + Math.random() * 20,
+      ease: 'power1.out',
+      onComplete: () => {
+        balloon.remove();
+      }
+    });
   });
 
   balloon.addEventListener('click', () => {
