@@ -16,7 +16,7 @@ const messages = [
     image: "IMG_3160.jpeg"
   },
   {
-    text: "I love having snacks with you, even though we need to be better... lol",
+    text: "You're a great cook and I love having snacks with you, even though we need to be better... lol",
     image: "IMG_3034.jpeg"
   },
   {
