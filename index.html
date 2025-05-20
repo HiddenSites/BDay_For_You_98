@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+  <script defer src="carousel.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="popup-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Prove you are Kelly by answering this riddle:</h2>
+      <img src="IMG_3196.png" alt="Riddle Image" class="modal-image" />
+      <p class="riddle-text">How does she smell?</p>
+      <input type="text" id="riddle-answer" placeholder="Your answer here" />
+      <button id="submit-answer">Submit</button>
+      <p id="feedback" class="feedback-text"></p>
+    </div>
+  </div>
+  <div id="card-wrapper">
+    <div id="card" class="step-0">
+      <div id="card-front" class="card-face front">
+        <h1>🎉 Happy Birthday! 🎉</h1>
+        <p>Swipe to open the card</p>
+      </div>
+      <div id="card-inside" class="card-face inside">
+        <audio id="bg-music" loop>
+          <source src="Happy.mp3" type="audio/mpeg" />
+        </audio>
+        <h1>Happy 32nd Kelly!!!</h1>
+
+        <div class="carousel-wrapper">
+          <div class="carousel" id="message-carousel"></div>
+            <div class="carousel-nav">
+              <button>&larr;</button>
+              <button>&rarr;</button>
+            </div>
+          </div>
+
+        <p>Open and close the card again to keep celebrating!!!</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

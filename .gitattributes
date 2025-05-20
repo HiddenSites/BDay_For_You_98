@@ -1,0 +1,7 @@
+# Prevent GitHub from detecting the language (optional)
+*.js linguist-detectable=false
+*.html linguist-detectable=false
+*.css linguist-detectable=false
+
+# Set default text behavior
+* text=auto

@@ -1,0 +1,242 @@
+/* Reset and base layout */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #ffe6f0;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Popup Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* above everything */
+}
+
+/* Popup Content */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  max-height: 80dvh;
+  max-width: 320px;
+  width: 90vw;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.modal-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.riddle-text {
+  font-size: 1.5rem; /* Adjust as needed — 1.5rem is a good readable size */
+}
+
+#riddle-answer {
+  width: 90%;
+  max-width: 300px;
+  padding: 0.6rem 0.8rem;
+  margin: 1rem auto 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  display: block;
+}
+
+
+#submit-answer {
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#submit-answer:hover {
+  background-color: #ff1493;
+}
+
+.feedback-text {
+  color: red;
+  margin-top: 0.5rem;
+  min-height: 1.2rem; /* reserve space for error message */
+  font-weight: bold;
+}
+
+/* Card wrapper holds the 3D perspective */
+#card-wrapper {
+  perspective: 1000px;
+  width: 90vw;
+  max-width: 400px;
+  height: 80dvh;
+  max-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The card itself flips */
+#card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  position: relative;
+  cursor: grab;
+}
+
+#card.open {
+  transform: rotateY(-180deg);
+}
+
+/* Card face styling */
+.card-face {
+  background-color: #ffc0cb;
+  border-radius: 20px;
+
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.front {
+  z-index: 2;
+  background-color: #ffc0cb;
+}
+
+.inside {
+  transform: rotateY(-180deg);
+  background-color: #ffe4ec;
+}
+
+
+#gallery img {
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.balloon {
+  width: 8vw;
+  height: 11vw;
+  min-width: 40px;
+  min-height: 55px;
+  max-width: 60px;
+  max-height: 80px;
+  border-radius: 50% 50% 45% 45%;
+  position: fixed;
+  top: -100px;
+  z-index: 10;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 100px;
+  background: url('data:image/svg+xml;utf8,<svg width="20" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 Q5 20, 10 40 Q15 60, 10 80 Q5 90, 10 100" stroke="%23888" fill="transparent" stroke-width="2"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+/* Make the wrapper relative to the card */
+.carousel-wrapper {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure carousel content doesn’t overflow */
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  /* Make sure each slide takes consistent vertical space */
+  min-height: 40vh; /* or 40vh, tweak as needed */
+}
+
+.carousel-slide.visible {
+  display: flex;
+}
+
+.carousel-slide p {
+  margin: 0 0 1rem;
+  font-size: 1.2rem; /* optional, for better text consistency */
+  line-height: 1.4;
+  min-height: 3rem; /* reserve consistent vertical space for text */
+}
+
+/* Responsive image sizing with relative height */
+.carousel-slide img {
+  width: auto;
+  max-width: 60%;
+  max-height: 20vh;  /* relative max height */
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.carousel-nav button {
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  margin: 0 0.5em;
+  border: none;
+  background: #ffb6c1;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.carousel-nav button:hover {
+  background: #ffa6b8;
+}
+
+
+
