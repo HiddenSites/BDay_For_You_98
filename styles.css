@@ -241,5 +241,123 @@ body {
   background: #ffa6b8;
 }
 
+.birthday-cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+  position: relative;
+  width: 80%;
+  max-width: 160px;
+  animation: popin 1s ease-out;
+}
+
+/* Cake */
+.cake {
+  width: 100%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.frosting {
+  height: 1.2em;
+  background: #fff0f5;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  position: relative;
+  z-index: 1;
+}
+
+.sprinkles {
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  width: 100%;
+  height: 1em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  flex-wrap: wrap;
+  gap: 0.2em;
+}
+
+.sprinkle {
+  width: 0.25em;
+  height: 0.25em;
+  border-radius: 50%;
+}
+
+.cake-layer {
+  height: 1.6em;
+  background: #ff99aa;
+  border-bottom: 0.25em solid #d97a9f;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  box-shadow: inset 0 -1px 0 #d77;
+}
+
+/* Candles */
+.candles {
+  display: flex;
+  justify-content: center;
+  gap: 0.6em;
+  position: absolute;
+  top: -1.5em; /* Lowered so they touch the frosting */
+  width: 100%;
+  z-index: 3;
+}
+
+.candle {
+  width: 0.5em;
+  height: 1.8em;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 2px,
+    #ffc0cb 2px,
+    #ffc0cb 4px
+  );
+  border-radius: 0.2em;
+  position: relative;
+  animation: wobble 2s infinite ease-in-out;
+}
+
+.flame {
+  width: 0.6em;
+  height: 0.6em;
+  background: radial-gradient(ellipse at center, #ffd700 0%, #ff8c00 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: -0.8em;
+  left: -0.05em;
+  animation: flicker 0.8s infinite alternate ease-in-out;
+  box-shadow: 0 0 0.4em #ffaa00;
+}
+
+/* Animations */
+@keyframes flicker {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0.85; }
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes popin {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 
 
