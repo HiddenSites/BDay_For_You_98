@@ -102,7 +102,7 @@ function handleMove(e) {
       }
     if (!cardOpened) {
       cardOpened = true;
-      setInterval(() => spawnBalloon(true), 5000);
+      setInterval(() => spawnBalloon(true), 3500);
       setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
