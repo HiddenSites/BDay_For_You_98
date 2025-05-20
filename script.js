@@ -207,6 +207,7 @@ function spawnFallingFlower() {
   flower.style.fontSize = Math.random() * 20 + 20 + "px";
   flower.style.opacity = 0.8;
   flower.style.zIndex = "5";
+  flower.style.pointerEvents = 'none';
 
   // Set starting left in pixels based on viewport width
   const startLeft = Math.random() * window.innerWidth;

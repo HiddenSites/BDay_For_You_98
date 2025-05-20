@@ -138,6 +138,7 @@ function spawnHearts() {
   heart.style.fontSize = Math.random() * 20 + 20 + "px"; // 20px to 40px
   heart.style.opacity = 0.85;
   heart.style.zIndex = "5";
+  heart.style.pointerEvents = 'none';
 
   const startLeft = Math.random() * window.innerWidth;
   heart.style.left = `${startLeft}px`;
