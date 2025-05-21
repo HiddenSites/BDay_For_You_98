@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         spawnBalloon();
       }
       document.getElementById("balloonSliderContainer").style.display = "block";
-
+      document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
       startBalloonTimers();
       correct = true;
     } else {
@@ -103,7 +103,8 @@ function handleMove(e) {
     if (!cardOpened) {
       cardOpened = true;
       allowDualBalloons = true;
-      startBalloonTimers();
+      updateBalloonInterval(1.5);
+      document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
       setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
@@ -134,7 +135,7 @@ const pastelColors = [
   "#FFF5BA"  // Soft Yellow
 ];
 
-let balloonInterval = 2500; // default 2s in ms
+let balloonInterval = 500; // default 0.5s in ms
 let timerA, timerB;
 let allowDualBalloons = false;
 
@@ -169,6 +170,14 @@ function startBalloonTimers() {
 function updateBalloonInterval(newSeconds) {
   balloonInterval = newSeconds * 1000;
   startBalloonTimers(); // reapply with new timing
+}
+
+function getSliderValueFromInterval(interval) {
+  const minLog = Math.log(100);
+  const maxLog = Math.log(10000);
+  const logInterval = Math.log(interval);
+  const scale = (logInterval - minLog) / (maxLog - minLog);
+  return 100 - Math.round(scale * 100); // reverse
 }
 
 function getIntervalFromSliderValue(value) {

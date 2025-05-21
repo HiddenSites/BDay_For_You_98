@@ -8,27 +8,27 @@ const messages = [
     image: "IMG_3063.jpeg"
   },
   {
-    text: "Even when you're uncontrollably sleepy.",
+    text: "Even when you're too sleepy.",
     image: "IMG_3137.jpeg"
   },
   {
-    text: "Because you still always look cute.",
+    text: "You still always look cute.",
     image: "IMG_3160.jpeg"
   },
   {
-    text: "You're a great cook and we can always make things tasty, which we need to do more... lol",
+    text: "You're a great cook and we always make things tasty together.",
     image: "IMG_3034.jpeg"
   },
   {
-    text: "I can't wait until we're able to play more games together.",
+    text: "I have so much fun with you even doing absolutely nothing",
     image: "IMG_3008.jpeg"
   },
   {
-    text: "You're always trying to make our home better, including the balcony.",
+    text: "You're always improving our home. Including the balcony.",
     image: "IMG_1563.jpeg"
   },
   {
-    text: "And you always push me to be better and go OUTSIDE of my comfort zone.",
+    text: "And you always push me to go outside of my comfort zone.",
     image: "IMG_1570.jpeg"
   },
     {

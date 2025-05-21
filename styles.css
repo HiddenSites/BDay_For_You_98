@@ -386,6 +386,7 @@ body {
   color: #d87ca6; /* soft magenta-pink */
   font-weight: bold;
   text-align: center;
+  font-family: "Georgia", "Times New Roman", serif;
 }
 
 #balloonSlider {
