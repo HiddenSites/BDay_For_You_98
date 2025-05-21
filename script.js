@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < 100; i++) {
         spawnBalloon();
       }
-      document.getElementById("balloon-control").style.display = "block";
+      document.getElementById("balloonSliderContainer").style.display = "block";
 
       startBalloonTimers();
       correct = true;
@@ -137,6 +137,18 @@ const pastelColors = [
 let balloonInterval = 2500; // default 2s in ms
 let timerA, timerB;
 let allowDualBalloons = false;
+
+const balloonSlider = document.getElementById("balloonSlider");
+
+// Prevent touch from reaching card logic
+balloonSlider.addEventListener("touchstart", (e) => e.stopPropagation(), { passive: true });
+balloonSlider.addEventListener("touchmove", (e) => e.stopPropagation(), { passive: true });
+balloonSlider.addEventListener("touchend", (e) => e.stopPropagation(), { passive: true });
+
+// Same for mouse (desktop)
+balloonSlider.addEventListener("mousedown", (e) => e.stopPropagation());
+balloonSlider.addEventListener("mousemove", (e) => e.stopPropagation());
+balloonSlider.addEventListener("mouseup", (e) => e.stopPropagation());
 
 // Start/Restart based on current settings
 function startBalloonTimers() {
