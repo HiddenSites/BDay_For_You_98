@@ -200,7 +200,7 @@ body {
   box-sizing: border-box;
 
   /* Make sure each slide takes consistent vertical space */
-  height: 45vh; /* or 40vh, tweak as needed */
+  height: 50vh; /* or 40vh, tweak as needed */
 }
 
 .carousel-slide.visible {
@@ -209,21 +209,23 @@ body {
 
 .carousel-slide p {
   margin: 0;
-  padding: 0.5rem;
-  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0rem;
+  font-size: 1.2rem; /* optional, for better text consistency */
   line-height: 1.4;
+  min-height: 3rem; /* reserve consistent vertical space for text */
   white-space: pre-line;
   font-family: "Georgia", "Times New Roman", serif;
 }
 
+/* Responsive image sizing with relative height */
 .carousel-slide img {
-  flex-grow: 1;
-  max-height: none; /* Remove the 30vh limit if you want it to scale with container */
   width: auto;
-  max-width: 100%;
+  max-width: 70%;
+  max-height: 40vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .carousel-nav button {
