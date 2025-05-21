@@ -209,8 +209,8 @@ body {
 }
 
 .carousel-slide p {
-  margin: 0;
-  padding-bottom: 0.5rem;
+ margin: 0 0 0 0;  /* no margin */
+  padding-bottom: 0; 
   padding-top: 0rem;
   font-size: 1.2rem; /* optional, for better text consistency */
   line-height: 1.4;
