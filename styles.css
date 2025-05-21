@@ -199,6 +199,7 @@ body {
   padding: 1rem;
   padding-top: 0rem;
   box-sizing: border-box;
+   margin: 0 0 0 0;  /* no margin */
 
   /* Make sure each slide takes consistent vertical space */
   height: 45vh; /* or 40vh, tweak as needed */
