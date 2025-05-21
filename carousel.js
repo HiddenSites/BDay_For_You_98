@@ -20,7 +20,7 @@ const messages = [
     image: "IMG_3034.jpeg"
   },
   {
-    text: "I have so much fun with you even doing absolutely nothing",
+    text: "I have so much fun with you even doing absolutely nothing.",
     image: "IMG_3008.jpeg"
   },
   {

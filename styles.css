@@ -219,8 +219,8 @@ body {
 /* Responsive image sizing with relative height */
 .carousel-slide img {
   width: auto;
-  max-width: 65%;
-  max-height: 20vh;  /* relative max height */
+  max-width: 70%;
+  max-height: 30vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
   margin-top: 1rem;
