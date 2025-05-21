@@ -197,7 +197,6 @@ body {
   text-align: center;
   width: 100%;
   padding: 0.5rem;
-  padding-top: 0rem;
   box-sizing: border-box;
 
   /* Make sure each slide takes consistent vertical space */
@@ -221,7 +220,7 @@ body {
 .carousel-slide img {
   width: auto;
   max-width: 70%;
-  max-height: 35vh;  /* relative max height */
+  max-height: 30vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
   padding-top: 0rem;
