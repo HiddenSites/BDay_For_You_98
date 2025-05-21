@@ -197,10 +197,11 @@ body {
   text-align: center;
   width: 100%;
   padding: 1rem;
+  padding-top: 0rem;
   box-sizing: border-box;
 
   /* Make sure each slide takes consistent vertical space */
-  height: 50vh; /* or 40vh, tweak as needed */
+  height: 45vh; /* or 40vh, tweak as needed */
 }
 
 .carousel-slide.visible {
