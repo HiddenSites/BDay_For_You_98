@@ -199,7 +199,6 @@ body {
   padding: 1rem;
   padding-top: 0rem;
   box-sizing: border-box;
-   margin: 0 0 0 0;  /* no margin */
 
   /* Make sure each slide takes consistent vertical space */
   height: 45vh; /* or 40vh, tweak as needed */
@@ -210,12 +209,10 @@ body {
 }
 
 .carousel-slide p {
- margin: 0 0 0 0;  /* no margin */
-  padding-bottom: 0; 
+  padding-bottom: 0.2rem;
   padding-top: 0rem;
   font-size: 1.2rem; /* optional, for better text consistency */
   line-height: 1.4;
-  min-height: 3rem; /* reserve consistent vertical space for text */
   white-space: pre-line;
   font-family: "Georgia", "Times New Roman", serif;
 }
