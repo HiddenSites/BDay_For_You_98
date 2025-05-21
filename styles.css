@@ -223,10 +223,10 @@ body {
 .carousel-slide img {
   width: auto;
   max-width: 70%;
-  max-height: 40vh;  /* relative max height */
+  max-height: 35vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .carousel-nav button {
