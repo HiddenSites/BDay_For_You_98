@@ -1,4 +1,4 @@
-  let correct = false;
+let correct = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   const popupModal = document.getElementById("popup-modal");
@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < 100; i++) {
         spawnBalloon();
       }
+      document.getElementById("balloon-control").style.display = "block";
 
-      // Spawn balloons every 800ms
-      setInterval(spawnBalloon, 2500);
+      startBalloonTimers();
       correct = true;
     } else {
       // Incorrect
@@ -102,7 +102,8 @@ function handleMove(e) {
       }
     if (!cardOpened) {
       cardOpened = true;
-      setInterval(() => spawnBalloon(true), 2500);
+      allowDualBalloons = true;
+      startBalloonTimers();
       setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
@@ -132,6 +133,53 @@ const pastelColors = [
   "#C5C6FF", // Periwinkle
   "#FFF5BA"  // Soft Yellow
 ];
+
+let balloonInterval = 2500; // default 2s in ms
+let timerA, timerB;
+let allowDualBalloons = false;
+
+// Start/Restart based on current settings
+function startBalloonTimers() {
+  clearInterval(timerA);
+  clearInterval(timerB);
+
+  if (!isFinite(balloonInterval)) {
+    return; // Don't spawn anything if interval is Infinity
+  }
+
+  timerA = setInterval(spawnBalloon, balloonInterval);
+
+  if (allowDualBalloons) {
+    timerB = setInterval(() => spawnBalloon(true), balloonInterval * 1.5);
+  }
+}
+
+function updateBalloonInterval(newSeconds) {
+  balloonInterval = newSeconds * 1000;
+  startBalloonTimers(); // reapply with new timing
+}
+
+function getIntervalFromSliderValue(value) {
+  if (value === 0) return Infinity;
+
+  const minInterval = 100;    // fastest
+  const maxInterval = 10000;  // slowest
+
+  // Map slider 1–100 (we avoid 0 for log) to log scale
+  const minLog = Math.log(minInterval);
+  const maxLog = Math.log(maxInterval);
+
+  const scale = (100 - value) / 100; // reverse slider
+  const logInterval = minLog + scale * (maxLog - minLog);
+
+  return Math.exp(logInterval);
+}
+
+document.getElementById("balloonSlider").addEventListener("input", function () {
+  const sliderValue = parseInt(this.value);
+  balloonInterval = getIntervalFromSliderValue(sliderValue);
+  startBalloonTimers();
+});
 
 function spawnBalloon(useImage = false) {
   const balloon = document.createElement('div');
