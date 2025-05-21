@@ -200,7 +200,7 @@ body {
   box-sizing: border-box;
 
   /* Make sure each slide takes consistent vertical space */
-  height: 40vh; /* or 40vh, tweak as needed */
+  height: 50vh; /* or 40vh, tweak as needed */
 }
 
 .carousel-slide.visible {
@@ -218,7 +218,7 @@ body {
 /* Responsive image sizing with relative height */
 .carousel-slide img {
   width: auto;
-  max-width: 70%;
+  max-width: 100%;
   max-height: 30vh;  /* relative max height */
   object-fit: contain;
   border-radius: 12px;
