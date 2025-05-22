@@ -32,7 +32,7 @@ const messages = [
     image: "IMG_1563.jpeg"
   },
     {
-    text: "You make me laugh so much, and I cherish all our times together. I love you so much and can't wait to keep building our lives together.\n\n\n\nLove,\nEvan & Rudy"
+    text: "You always make me laugh and I cherish all of my mermories with you. I love you so much and can't wait to keep building our lives together.\n\n\n\n\nLove,\nEvan & Rudy"
   }
 ];
 
