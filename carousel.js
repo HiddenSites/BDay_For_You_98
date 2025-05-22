@@ -20,16 +20,16 @@ const messages = [
     image: "IMG_3034.jpeg"
   },
   {
-    text: "I have so much fun with you even doing absolutely nothing.",
+    text: "I have so much fun with you, even doing absolutely nothing.",
     image: "IMG_3008.jpeg"
   },
   {
     text: "You're always improving our home and lives.",
-    image: "IMG_1563.jpeg"
+    image: "IMG_3223.jpeg"
   },
   {
     text: "And you always push me to go outside of my comfort zone.",
-    image: "IMG_1570.jpeg"
+    image: "IMG_1563.jpeg"
   },
     {
     text: "You make me laugh so much, and I cherish all our times together. I love you so much and can't wait to keep building our lives together.\n\n\n\nLove,\nEvan & Rudy"
