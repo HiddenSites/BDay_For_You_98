@@ -130,9 +130,7 @@ const pastelColors = [
   "#E0BBE4", // Lavender
   "#AEC6CF", // Pastel Blue
   "#D5E8D4", // Light Sage
-  "#F7CAC9", // Rose Quartz (pink, but cooler)
   "#FFE5B4", // Apricot (warmer peach replacement)
-  "#C9E4DE"  // Pastel Teal
 ];
 
 let balloonInterval = 500; // default 0.5s in ms
