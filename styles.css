@@ -330,14 +330,14 @@ body {
   justify-content: center;
   gap: 0.6em;
   position: absolute;
-  top: -1.5em; /* Lowered so they touch the frosting */
+  top: -1.4em; /* Lowered so they touch the frosting */
   width: 100%;
   z-index: 3;
 }
 
 .candle {
-  width: 0.5em;
-  height: 1.8em;
+  width: 0.4em;
+  height: 1.4em;
   background: repeating-linear-gradient(
     45deg,
     #fff,
