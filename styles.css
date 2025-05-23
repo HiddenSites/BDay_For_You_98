@@ -340,8 +340,8 @@ body {
   height: 1.4em;
   background: repeating-linear-gradient(
     45deg,
-    #fff,
-    #fff 2px,
+    #fff0f5,
+    #fff0f5 2px,
     #ffc0cb 2px,
     #ffc0cb 4px
   );
@@ -374,7 +374,7 @@ body {
 .number-candle .flame {
   width: 0.25em;    /* smaller width */
   height: 0.5em;    /* smaller height */
-  top: -0.18em; /* slightly lower for number candle height */
+  top: -0.2em; /* slightly lower for number candle height */
 }
 
 @keyframes flicker {
@@ -421,7 +421,7 @@ body {
 }
 
 .number-candle {
-  color: white;
+  color: #fff0f5;
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
   font-size: 2.5em;
@@ -436,7 +436,7 @@ body {
   line-height: 1;
   box-sizing: border-box;
   text-shadow: 0 0 1px #ff69b4;
-  margin-top: -0.5em;         /* Raise it above the cake */
+  margin-top: -0.55em;         /* Raise it above the cake */
 }
 
 .number-candle::after {
