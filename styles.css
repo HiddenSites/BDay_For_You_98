@@ -356,7 +356,7 @@ body {
   background: radial-gradient(ellipse at center, #ffd700 0%, #ff8c00 100%);
   border-radius: 50%;
   position: absolute;
-  top: -0.6em;
+  top: -0.5em;
   left: -0.1em;
   animation: flicker 0.8s infinite alternate ease-in-out;
   box-shadow: 0 0 0.4em #ffaa00;
