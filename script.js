@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popupModal.style.display = "none";
       cardWrapper.style.display = "flex";
       bgMusic.play();
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 100; i++) {
         spawnBalloon(false, false);
       }
       document.getElementById("balloonSliderContainer").style.display = "block";
@@ -102,9 +102,6 @@ function handleMove(e) {
       }
     if (!cardOpened) {
       cardOpened = true;
-      document.querySelectorAll('.sparkler').forEach(el => {
-        el.classList.add('is-hidden');
-      });
       allowDualBalloons = true;
       updateBalloonInterval(1.5);
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
@@ -112,9 +109,6 @@ function handleMove(e) {
     }
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
-    document.querySelectorAll('.sparkler').forEach(el => {
-      el.classList.remove('is-hidden');
-    });
     cardOpen = false;
     for (let i = 0; i < 20; i++) {
         spawnFallingFlower();
