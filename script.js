@@ -249,7 +249,7 @@ function spawnBalloon(useImage = false, isCorrect = true) {
   
     gsap.to(balloon, {
       y: screenHeight + 150, // Fall well past the screen bottom
-      duration: isCorrect ? 6 + Math.random() * 20 : 4 + Math.random()*7, // Short duration if incorrect
+      duration: isCorrect ? 6 + Math.random() * 20 : 6 + Math.random()*5, // Short duration if incorrect
       ease: 'power1.out',
       onComplete: () => {
         balloon.remove();
