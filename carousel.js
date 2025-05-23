@@ -60,7 +60,7 @@ function nextSlide() {
       setInterval(spawnHearts, 1000);
       heartsIs = true;
     }
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
     spawnHearts();
       }
   }

@@ -264,8 +264,30 @@ body {
   align-items: stretch;
 }
 
+/* Cake */
+.cake2 {
+  width: 70%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Cake */
+.cake3 {
+  width: 50%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .frosting {
-  height: 1em;
+  height: 0.8em;
   background: #fff0f5;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
@@ -275,7 +297,6 @@ body {
 
 .sprinkles {
   position: absolute;
-  top: 0.15em;
   left: 0;
   width: 100%;
   height: 1em;
@@ -295,7 +316,7 @@ body {
 }
 
 .cake-layer {
-  height: 2em;
+  height: 1.6em;
   background: #ff99aa;
   border-bottom: 0.25em solid #d97a9f;
   border-bottom-left-radius: 0.5em;
@@ -344,7 +365,7 @@ body {
 /* Animations */
 @keyframes flicker {
   0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.2); opacity: 0.85; }
+  100% { transform: scale(1.5); opacity: 0.85; }
 }
 
 @keyframes wobble {
