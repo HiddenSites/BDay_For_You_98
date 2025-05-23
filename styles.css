@@ -436,13 +436,13 @@ body {
   line-height: 1;
   box-sizing: border-box;
   text-shadow: 0 0 1px #ff69b4;
-  margin-top: -0.7em;         /* Raise it above the cake */
+  margin-top: -0.5em;         /* Raise it above the cake */
 }
 
 .number-candle::after {
   content: '';
   position: absolute;
-  bottom: 0.05em; /* adjust to reach the cake top */
+  bottom: 0.2em; /* adjust to reach the cake top */
   left: 50%;
   transform: translateX(-50%);
   width: 0.01em;
