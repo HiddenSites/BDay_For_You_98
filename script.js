@@ -202,7 +202,7 @@ document.getElementById("balloonSlider").addEventListener("input", function () {
   startBalloonTimers();
 });
 
-function spawnBalloon(useImage = false, isCorrect = true) {
+function spawnBalloon(useImage = false, isStart = true) {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
   balloon.style.position = 'absolute';
@@ -249,7 +249,7 @@ function spawnBalloon(useImage = false, isCorrect = true) {
   
     gsap.to(balloon, {
       y: screenHeight + 150, // Fall well past the screen bottom
-      duration: isCorrect ? 6 + Math.random() * 20 : 8 + Math.random()*4, // Short duration if incorrect
+      duration: isStart ? 6 + Math.random() * 20 : 8 + Math.random()*6, // Short duration if incorrect
       ease: 'power1.out',
       onComplete: () => {
         balloon.remove();
