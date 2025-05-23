@@ -217,6 +217,9 @@ function spawnBalloon(useImage = false) {
   'IMG_3148.jpeg',
   'IMG_7159.jpeg',
   'IMG_3063.jpeg',
+  'IMG_2646.jpeg',
+  'IMG_2665.jpeg',
+  'IMG_2889.jpeg',
   'IMG_3073.jpeg',
   'IMG_7170.jpeg'
 ];

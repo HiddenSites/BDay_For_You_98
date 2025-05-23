@@ -31,6 +31,10 @@ const messages = [
     text: "And you always push me to go outside of my comfort zone.",
     image: "IMG_1563.jpeg"
   },
+  {
+    text: "I'm so happy you brought lil Rudy into my life. You're the best mom she could have asked for.",
+    image: "baby.jpeg"
+  },
     {
     text: "You always make me laugh and I cherish all of my mermories with you. I love you so much and can't wait to keep building our lives together.\n\n\n\n\nLove,\nEvan & Rudy"
   }
