@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardWrapper.style.display = "flex";
       bgMusic.play();
       for (let i = 0; i < 100; i++) {
-        spawnBalloon();
+        spawnBalloon(false, false);
       }
       document.getElementById("balloonSliderContainer").style.display = "block";
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
@@ -202,7 +202,7 @@ document.getElementById("balloonSlider").addEventListener("input", function () {
   startBalloonTimers();
 });
 
-function spawnBalloon(useImage = false) {
+function spawnBalloon(useImage = false, isCorrect = true) {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
   balloon.style.position = 'absolute';
@@ -249,7 +249,7 @@ function spawnBalloon(useImage = false) {
   
     gsap.to(balloon, {
       y: screenHeight + 150, // Fall well past the screen bottom
-      duration: 6 + Math.random() * 20,
+      duration: isCorrect ? 6 + Math.random() * 20 : 5 + Math.random()*8, // Short duration if incorrect
       ease: 'power1.out',
       onComplete: () => {
         balloon.remove();
