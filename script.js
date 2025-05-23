@@ -123,16 +123,16 @@ document.addEventListener("touchmove", handleMove);
 
 // Pastel colors for balloons
 const pastelColors = [
-  "#FFB6C1", // Light Pink
-  "#FFDAB9", // Peach Puff
-  "#FFFACD", // Lemon Chiffon
-  "#E0BBE4", // Lavender
-  "#FF69B4", // Hot Pink
-  "#FFCCCB", // Soft Coral
-  "#FADADD", // Misty Rose
+  "#FFB6C1", // Light Pink (keep 1 strong pink)
   "#B5EAD7", // Mint
   "#C5C6FF", // Periwinkle
-  "#FFF5BA"  // Soft Yellow
+  "#FFF5BA", // Soft Yellow
+  "#E0BBE4", // Lavender
+  "#AEC6CF", // Pastel Blue
+  "#D5E8D4", // Light Sage
+  "#F7CAC9", // Rose Quartz (pink, but cooler)
+  "#FFE5B4", // Apricot (warmer peach replacement)
+  "#C9E4DE"  // Pastel Teal
 ];
 
 let balloonInterval = 500; // default 0.5s in ms
