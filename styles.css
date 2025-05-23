@@ -615,6 +615,12 @@ body {
     /* left and top remain set inline */
   }
 
+  .sparkler.is-hidden .spark {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+
   .sparkler-light {
     position: absolute;
     top: 0;
