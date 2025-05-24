@@ -250,7 +250,6 @@ body {
   position: relative;
   width: 80%;
   max-width: 160px;
-  animation: popin 1s ease-out;
 }
 
 /* Cake */
@@ -350,7 +349,6 @@ body {
   );
   border-radius: 0.2em;
   position: relative;
-  animation: wobble 2s infinite ease-in-out;
 }
 
 .flame {
