@@ -321,6 +321,15 @@ body {
 .cake-layer {
   height: 1.6em;
   background: #ff99aa;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+}
+
+.bottom-cake-layer {
+  height: 1.6em;
+  background: #ff99aa;
   border-bottom: 0.25em solid #d97a9f;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
