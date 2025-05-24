@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardWrapper.style.display = "flex";
       bgMusic.play();
       for (let i = 0; i < 100; i++) {
-        spawnBalloon();
+        spawnBalloon(false, false);
       }
       document.getElementById("balloonSliderContainer").style.display = "block";
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
@@ -110,7 +110,7 @@ function handleMove(e) {
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
     cardOpen = false;
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 20; i++) {
         spawnFallingFlower();
       }
   }
@@ -123,16 +123,14 @@ document.addEventListener("touchmove", handleMove);
 
 // Pastel colors for balloons
 const pastelColors = [
-  "#FFB6C1", // Light Pink
-  "#FFDAB9", // Peach Puff
-  "#FFFACD", // Lemon Chiffon
-  "#E0BBE4", // Lavender
-  "#FF69B4", // Hot Pink
-  "#FFCCCB", // Soft Coral
-  "#FADADD", // Misty Rose
+  "#FFB6C1", // Light Pink (keep 1 strong pink)
   "#B5EAD7", // Mint
   "#C5C6FF", // Periwinkle
-  "#FFF5BA"  // Soft Yellow
+  "#FFF5BA", // Soft Yellow
+  "#E0BBE4", // Lavender
+  "#AEC6CF", // Pastel Blue
+  "#D5E8D4", // Light Sage
+  "#FFE5B4", // Apricot (warmer peach replacement)
 ];
 
 let balloonInterval = 500; // default 0.5s in ms
@@ -202,7 +200,7 @@ document.getElementById("balloonSlider").addEventListener("input", function () {
   startBalloonTimers();
 });
 
-function spawnBalloon(useImage = false) {
+function spawnBalloon(useImage = false, isStart = true) {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
   balloon.style.position = 'absolute';
@@ -217,6 +215,9 @@ function spawnBalloon(useImage = false) {
   'IMG_3148.jpeg',
   'IMG_7159.jpeg',
   'IMG_3063.jpeg',
+  'IMG_2646.jpeg',
+  'IMG_2665.jpeg',
+  'IMG_2889.jpeg',
   'IMG_3073.jpeg',
   'IMG_7170.jpeg'
 ];
@@ -246,7 +247,7 @@ function spawnBalloon(useImage = false) {
   
     gsap.to(balloon, {
       y: screenHeight + 150, // Fall well past the screen bottom
-      duration: 6 + Math.random() * 20,
+      duration: isStart ? 6 + Math.random() * 20 : 8 + Math.random()*6, // Short duration if incorrect
       ease: 'power1.out',
       onComplete: () => {
         balloon.remove();
