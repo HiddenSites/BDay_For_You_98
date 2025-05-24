@@ -241,7 +241,7 @@ function spawnBalloon(useImage = false, isStart = true) {
 
   gsap.to(balloon, {
     y: screenHeight + 150, // Fall well past the screen bottom
-    duration: isStart ? 6 + Math.random() * 20 : 8 + Math.random() * 6,
+    duration: isStart ? 10 + Math.random() * 15 : 8 + Math.random() * 6,
     ease: 'power1.out',
     onUpdate: function () {
       balloon.style.transform = `translateY(${this.targets()[0]._gsap.y}px)`;
