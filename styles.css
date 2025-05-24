@@ -293,6 +293,9 @@ body {
   border-top-right-radius: 0.5em;
   position: relative;
   z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .sprinkles {
@@ -328,7 +331,7 @@ body {
 .candles {
   display: flex;
   justify-content: center;
-  gap: 0.6em;
+  gap: 0.15em;
   position: absolute;
   top: -1.4em; /* Lowered so they touch the frosting */
   width: 100%;
@@ -381,6 +384,37 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
+.number-candle {
+  color: #fff0f5;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.5em;
+  width: auto;
+  height: 1.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2em;
+  position: relative;
+  animation: wobble 2s infinite ease-in-out;
+  line-height: 1;
+  box-sizing: border-box;
+  text-shadow: 0 0 1px #ff69b4;
+  margin-top: -0.55em;         /* Raise it above the cake */
+}
+
+.number-candle::after {
+  content: '';
+  position: absolute;
+  bottom: 0.2em; /* adjust to reach the cake top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.01em;
+  height: 0.3em;
+  background-color: #fff0f5;
+  border-radius: 0.05em;
+}
+
 #balloonSliderContainer {
   position: fixed;
   top: 0.2em;
@@ -418,4 +452,37 @@ body {
   accent-color: #ffb6c1; /* pastel pink */
   background: transparent;
   cursor: pointer;
+}
+
+/* === Rosette Styling: Static & Beautiful === */
+.rosettes {
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* vertical centering */
+}
+
+.rosette {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #ffd6e0 30%, #ff9eb5 70%);
+  box-shadow:
+    inset 0 -0.125rem 0.25rem rgba(255, 255, 255, 0.6),
+    0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hydrangea-row {
+  display: flex;
+  justify-content: center; /* center horizontally, or space-between if you want */
+  flex-wrap: wrap; /* if you want them to wrap on smaller screens */
+  pointer-events: none;
+}
+
+.hydrangea-cluster {
+  flex: 0 0 2.2rem; /* fixed width */
+  height: 2.2rem;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g fill="none" stroke="%237F8FA6" stroke-width="0.5"><circle cx="16" cy="20" r="6" fill="%23A3BED1"/><circle cx="24" cy="14" r="5" fill="%23B0C7DD"/><circle cx="32" cy="18" r="6" fill="%239DBED6"/><circle cx="40" cy="14" r="5" fill="%23ADC8DF"/><circle cx="48" cy="20" r="6" fill="%23A4BFD3"/><circle cx="24" cy="26" r="5" fill="%23B4CEDF"/><circle cx="32" cy="30" r="6" fill="%239BBED8"/><circle cx="40" cy="26" r="5" fill="%23B1C6DD"/></g></svg>') no-repeat center center;
+  background-size: contain;
+    position: relative;
 }
