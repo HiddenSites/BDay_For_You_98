@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       popupModal.style.display = "none";
       cardWrapper.style.display = "flex";
       bgMusic.play();
-      document.body.classList.add('animations-enabled');
       for (let i = 0; i < 100; i++) {
         spawnBalloon(false, false);
       }
@@ -96,9 +95,6 @@ function handleMove(e) {
     return;
   }
   if (!cardOpen && diffX < -50) {
-    setTimeout(() => {
-      document.body.classList.remove('animations-enabled');
-    }, 1000);
     card.classList.add("open");
     cardOpen = true;
     for (let i = 0; i < 30; i++) {
@@ -111,11 +107,9 @@ function handleMove(e) {
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
       setInterval(spawnFallingFlower, 1000);
     }
-
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
     cardOpen = false;
-    document.body.classList.add('animations-enabled');
     for (let i = 0; i < 40; i++) {
         spawnFallingFlower();
       }

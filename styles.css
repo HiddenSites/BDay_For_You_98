@@ -243,7 +243,7 @@ body {
   background: #ffa6b8;
 }
 
-.animations-enabled .birthday-cake {
+.birthday-cake {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -340,7 +340,7 @@ body {
   z-index: 3;
 }
 
-.animations-enabled .candle {
+.candle {
   width: 0.4em;
   height: 1.4em;
   background: repeating-linear-gradient(
@@ -355,7 +355,7 @@ body {
   animation: wobble 2s infinite ease-in-out;
 }
 
-.animations-enabled .flame {
+.flame {
   position: absolute;
   background-color: orange;
   width: 0.4em;
@@ -425,7 +425,7 @@ body {
   }
 }
 
-.animations-enabled .number-candle {
+.number-candle {
   color: #fff0f5;
   font-weight: bold;
   font-family: "Courier New", Courier, monospace;
@@ -520,7 +520,7 @@ body {
   pointer-events: none;
 }
 
-.animations-enabled .bubbles span {
+.bubbles span {
   position: absolute;
   bottom: 0;
   background: #fff;
@@ -533,28 +533,28 @@ body {
 }
 
 /* Smaller bubbles closer together */
-.animations-enabled .bubbles span:nth-child(1) {
+.bubbles span:nth-child(1) {
   left: 15%;
   width: 0.2em;
   height: 0.2em;
   animation-duration: 2.1s;
   animation-delay: 0s;
 }
-.animations-enabled .bubbles span:nth-child(2) {
+.bubbles span:nth-child(2) {
   left: 45%;
   width: 0.25em;
   height: 0.25em;
   animation-duration: 1.8s;
   animation-delay: 0.4s;
 }
-.animations-enabled .bubbles span:nth-child(3) {
+.bubbles span:nth-child(3) {
   left: 70%;
   width: 0.18em;
   height: 0.18em;
   animation-duration: 2.3s;
   animation-delay: 0.7s;
 }
-.animations-enabled .bubbles span:nth-child(4) {
+.bubbles span:nth-child(4) {
   left: 30%;
   width: 0.22em;
   height: 0.22em;
@@ -628,7 +628,7 @@ body {
     margin-left: -1.125rem; /* half width */
   }
 
-  .animations-enabled .sparkler-light::after {
+  .sparkler-light::after {
     content: '';
     display: block;
     border-radius: 50%;
@@ -647,7 +647,7 @@ body {
     transform: rotate(var(--spark-rotate));
   }
 
-  .animations-enabled .spark::after {
+  .spark::after {
     content: '';
     display: block;
     position: absolute;
