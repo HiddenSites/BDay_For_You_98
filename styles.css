@@ -585,10 +585,7 @@ body {
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #ffd6e0 30%, #ff9eb5 70%);
-  box-shadow:
-    inset 0 -0.125rem 0.25rem rgba(255, 255, 255, 0.6),
-    0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  background:  #ffd6e0 30%;
   position: relative;
 }
 
