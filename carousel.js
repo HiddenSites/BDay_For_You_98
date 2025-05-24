@@ -61,7 +61,7 @@ function nextSlide() {
 
   if (currentSlide === slides.length - 1){
     if (!heartsIs){
-      setInterval(spawnHearts, 1500);
+      setInterval(spawnHearts, 1000);
       heartsIs = true;
     }
     for (let i = 0; i < 50; i++) {

@@ -105,7 +105,7 @@ function handleMove(e) {
       allowDualBalloons = true;
       updateBalloonInterval(1.8);
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
-      setInterval(spawnFallingFlower, 1500);
+      setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
