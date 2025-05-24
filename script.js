@@ -103,14 +103,14 @@ function handleMove(e) {
     if (!cardOpened) {
       cardOpened = true;
       allowDualBalloons = true;
-      updateBalloonInterval(1.5);
+      updateBalloonInterval(1.8);
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(balloonInterval);
-      setInterval(spawnFallingFlower, 1000);
+      setInterval(spawnFallingFlower, 1500);
     }
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
     cardOpen = false;
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
         spawnFallingFlower();
       }
   }
@@ -133,7 +133,7 @@ const pastelColors = [
   "#FFE5B4", // Apricot (warmer peach replacement)
 ];
 
-let balloonInterval = 500; // default 0.5s in ms
+let balloonInterval = 1200; // default 0.5s in ms
 let timerA, timerB;
 let allowDualBalloons = false;
 
@@ -204,23 +204,15 @@ function spawnBalloon(useImage = false, isStart = true) {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
   balloon.style.position = 'absolute';
-  balloon.style.top = '-100px'; // Start just above the screen
+  balloon.style.transform = 'translateY(-100px)';
 
   if (useImage) {
     const imageSources = [
-  'IMG_2559.jpeg',
-  'IMG_2932.jpeg',
-  'IMG_3022.jpeg',
-  'IMG_3096.jpeg',
-  'IMG_3148.jpeg',
-  'IMG_7159.jpeg',
-  'IMG_3063.jpeg',
-  'IMG_2646.jpeg',
-  'IMG_2665.jpeg',
-  'IMG_2889.jpeg',
-  'IMG_3073.jpeg',
-  'IMG_7170.jpeg'
-];
+      'IMG_2559.jpeg', 'IMG_2932.jpeg', 'IMG_3022.jpeg',
+      'IMG_3096.jpeg', 'IMG_3148.jpeg', 'IMG_7159.jpeg',
+      'IMG_3063.jpeg', 'IMG_2646.jpeg', 'IMG_2665.jpeg',
+      'IMG_2889.jpeg', 'IMG_3073.jpeg', 'IMG_7170.jpeg'
+    ];
     balloon.style.backgroundImage = `url(${imageSources[Math.floor(Math.random() * imageSources.length)]})`;
     balloon.style.backgroundSize = 'cover';
     balloon.style.backgroundPosition = 'center';
@@ -229,42 +221,50 @@ function spawnBalloon(useImage = false, isStart = true) {
     balloon.style.minHeight = '110px';
     balloon.style.maxWidth = '120px';
     balloon.style.maxHeight = '160px';
-    balloon.style.backgroundColor = 'transparent'; // no background color
+    balloon.style.backgroundColor = 'transparent';
   } else {
     balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
   }
- document.body.appendChild(balloon);
 
-  // Use requestAnimationFrame to ensure styles are applied first
+  document.body.appendChild(balloon);
+
   requestAnimationFrame(() => {
     const width = balloon.offsetWidth;
     const maxLeft = window.innerWidth - width;
     const leftPos = Math.random() * maxLeft;
-
     balloon.style.left = `${leftPos}px`;
 
     const screenHeight = Math.max(window.innerHeight, document.documentElement.clientHeight);
-  
-    gsap.to(balloon, {
-      y: screenHeight + 150, // Fall well past the screen bottom
-      duration: isStart ? 6 + Math.random() * 20 : 8 + Math.random()*6, // Short duration if incorrect
-      ease: 'power1.out',
-      onComplete: () => {
-        balloon.remove();
-      }
-    });
+
+  balloon.style.top = '0px'; // Ensure balloon starts from the top of the viewport
+  balloon.style.transform = 'translateY(-100px)'; // Still use GPU-accelerated translate
+
+  gsap.to(balloon, {
+    y: screenHeight + 150, // Fall well past the screen bottom
+    duration: isStart ? 6 + Math.random() * 20 : 8 + Math.random() * 6,
+    ease: 'power1.out',
+    onUpdate: function () {
+      balloon.style.transform = `translateY(${this.targets()[0]._gsap.y}px)`;
+    },
+    onComplete: () => balloon.remove()
   });
+  });
+
 
   balloon.addEventListener('click', () => {
     let pop;
-    if (balloon.style.backgroundColor == 'transparent'){
+    if (balloon.style.backgroundColor === 'transparent') {
       pop = new Audio('love.mp3');
-    }
-    else{
+    } else {
       pop = new Audio('pop.mp3');
     }
     pop.play();
-    gsap.to(balloon, { scale: 0, opacity: 0, duration: 0.3, onComplete: () => balloon.remove() });
+    gsap.to(balloon, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => balloon.remove()
+    });
   });
 }
 
