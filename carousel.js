@@ -32,6 +32,10 @@ const messages = [
     image: "IMG_1563.jpeg"
   },
   {
+    text: "We’ll do bigger things, but I treasure even our smallest adventures.",
+    image: "IMG_3236.jpeg"
+  },
+  {
     text: "I'm so happy you brought lil Rudy into my life. You're the best mom she could have asked for.",
     image: "baby.jpeg"
   },

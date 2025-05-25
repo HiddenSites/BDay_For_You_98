@@ -211,7 +211,8 @@ function spawnBalloon(useImage = false, isStart = true) {
       'IMG_2559.jpeg', 'IMG_2932.jpeg', 'IMG_3022.jpeg',
       'IMG_3096.jpeg', 'IMG_3148.jpeg', 'IMG_7159.jpeg',
       'IMG_3063.jpeg', 'IMG_2646.jpeg', 'IMG_2665.jpeg',
-      'IMG_2889.jpeg', 'IMG_3073.jpeg', 'IMG_7170.jpeg'
+      'IMG_0681.jpeg', 'IMG_3213.jpeg', 'IMG_7170.jpeg',
+      'IMG_2889.jpeg', 'IMG_3073.jpeg',
     ];
     balloon.style.backgroundImage = `url(${imageSources[Math.floor(Math.random() * imageSources.length)]})`;
     balloon.style.backgroundSize = 'cover';
