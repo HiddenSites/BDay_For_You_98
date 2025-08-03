@@ -1,0 +1,6 @@
+# Ignore everything inside the Photos folder
+Photos/*
+# But do not ignore the Photos folder itself
+!Photos/
+# And don't ignore this placeholder file
+!Photos/placeholder.txt
