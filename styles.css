@@ -1,0 +1,717 @@
+/* Reset and base layout */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #ffe6f0;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Popup Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* above everything */
+}
+
+/* Popup Content */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  max-height: 80dvh;
+  max-width: 320px;
+  width: 90vw;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.modal-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.riddle-text {
+  font-size: 1.5rem; /* Adjust as needed — 1.5rem is a good readable size */
+}
+
+#riddle-answer {
+  width: 90%;
+  max-width: 300px;
+  padding: 0.6rem 0.8rem;
+  margin: 1rem auto 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  display: block;
+}
+
+
+#submit-answer {
+  background-color: #ff69b4;
+  border: none;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#submit-answer:hover {
+  background-color: #ff1493;
+}
+
+.feedback-text {
+  color: red;
+  margin-top: 0.5rem;
+  min-height: 1.2rem; /* reserve space for error message */
+  font-weight: bold;
+}
+
+/* Card wrapper holds the 3D perspective */
+#card-wrapper {
+  perspective: 1000px;
+  width: 90vw;
+  max-width: 400px;
+  height: 80dvh;
+  max-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The card itself flips */
+#card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  position: relative;
+  cursor: grab;
+}
+
+#card.open {
+  transform: rotateY(-180deg);
+}
+
+/* Card face styling */
+.card-face {
+  background-color: #ffc0cb;
+  border-radius: 20px;
+
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.front {
+  z-index: 2;
+  background-color: #ffc0cb;
+}
+
+.inside {
+  transform: rotateY(-180deg);
+  background-color: #ffe4ec;
+}
+
+
+#gallery img {
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.balloon {
+  width: 8vw;
+  height: 11vw;
+  min-width: 40px;
+  min-height: 55px;
+  max-width: 60px;
+  max-height: 80px;
+  border-radius: 50% 50% 45% 45%;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100px);
+  z-index: 10;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 100px;
+  background: url('data:image/svg+xml;utf8,<svg width="20" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M10 0 Q5 20, 10 40 Q15 60, 10 80 Q5 90, 10 100" stroke="%23888" fill="transparent" stroke-width="2"/></svg>') no-repeat center;
+  background-size: contain;
+}
+
+/* Make the wrapper relative to the card */
+.carousel-wrapper {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure carousel content doesn’t overflow */
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  padding-top: 0;
+  box-sizing: border-box;
+
+  /* Make sure each slide takes consistent vertical space */
+  height: 45vh; /* or 40vh, tweak as needed */
+}
+
+.carousel-slide.visible {
+  display: flex;
+}
+
+.carousel-slide p {
+  padding-bottom: 0.2rem;
+  padding-top: 0rem;
+  font-size: 1.2rem; /* optional, for better text consistency */
+  line-height: 1.4;
+  white-space: pre-line;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+/* Responsive image sizing with relative height */
+.carousel-slide img {
+  width: auto;
+  max-width: 100%;
+  height: 30vh;  /* relative max height */
+  object-fit: contain;
+  border-radius: 12px;
+  padding-top: 0rem;
+}
+
+.carousel-nav button {
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  margin: 0 0.5em;
+  border: none;
+  background: #ffb6c1;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #000;
+}
+
+.carousel-nav button:active {
+  background: #ffa6b8;
+}
+
+.birthday-cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+  position: relative;
+  width: 80%;
+  max-width: 160px;
+  animation: popin 1s ease-out;
+}
+
+/* Cake */
+.cake {
+  width: 90%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Cake */
+.cake2 {
+  width: 70%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Cake */
+.cake3 {
+  width: 50%;
+  position: relative;
+  border-radius: 1em;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.frosting {
+  height: 0.8em;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.sprinkles {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  flex-wrap: wrap;
+  gap: 0.2em;
+}
+
+.sprinkle {
+  width: 0.25em;
+  height: 0.25em;
+  border-radius: 50%;
+}
+
+.cake-layer {
+  height: 1.6em;
+  background: #ff99aa;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+}
+
+.bottom-cake-layer {
+  height: 1.6em;
+  background: #ff99aa;
+  border-bottom: 0.25em solid #d97a9f;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  box-shadow: inset 0 -1px 0 #d77;
+}
+
+/* Candles */
+.candles {
+  display: flex;
+  justify-content: center;
+  gap: 0.15em;
+  position: absolute;
+  top: -1.4em; /* Lowered so they touch the frosting */
+  width: 100%;
+  z-index: 3;
+}
+
+.candle {
+  width: 0.4em;
+  height: 1.4em;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff0f5,
+    #fff0f5 2px,
+    #ffc0cb 2px,
+    #ffc0cb 4px
+  );
+  border-radius: 0.2em;
+  position: relative;
+  animation: wobble 2s infinite ease-in-out;
+}
+
+.flame {
+  position: absolute;
+  background-color: orange;
+  width: 0.4em;
+  height: 0.8em;
+  border-radius: 0.3em 0.3em 0.3em 0.3em / 0.7em 0.7em 0.3em 0.3em;
+  top: -0.8em;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 10;
+  box-shadow:
+    0 0 0.2em rgba(255, 165, 0, 0.5),
+    0 0 0.4em rgba(255, 165, 0, 0.5),
+    0 0 0.8em rgba(255, 165, 0, 0.5),
+    0 0 1em rgba(255, 165, 0, 0.5);
+  transform-origin: 50% 90%;
+  animation: flicker 1s ease-in-out alternate infinite;
+}
+
+.number-candle .flame {
+  width: 0.2em;    /* smaller width */
+  height: 0.4em;    /* smaller height */
+  top: -0.1em; /* slightly lower for number candle height */
+}
+
+@keyframes flicker {
+  0% {
+    transform: skewX(5deg);
+    box-shadow:
+      0 0 10px rgba(255, 165, 0, 0.2),
+      0 0 20px rgba(255, 165, 0, 0.2),
+      0 0 60px rgba(255, 165, 0, 0.2),
+      0 0 80px rgba(255, 165, 0, 0.2);
+  }
+  25% {
+    transform: skewX(-5deg);
+    box-shadow:
+      0 0 10px rgba(255, 165, 0, 0.5),
+      0 0 20px rgba(255, 165, 0, 0.5),
+      0 0 60px rgba(255, 165, 0, 0.5),
+      0 0 80px rgba(255, 165, 0, 0.5);
+  }
+  50% {
+    transform: skewX(10deg);
+    box-shadow:
+      0 0 10px rgba(255, 165, 0, 0.3),
+      0 0 20px rgba(255, 165, 0, 0.3),
+      0 0 60px rgba(255, 165, 0, 0.3),
+      0 0 80px rgba(255, 165, 0, 0.3);
+  }
+  75% {
+    transform: skewX(-10deg);
+    box-shadow:
+      0 0 10px rgba(255, 165, 0, 0.4),
+      0 0 20px rgba(255, 165, 0, 0.4),
+      0 0 60px rgba(255, 165, 0, 0.4),
+      0 0 80px rgba(255, 165, 0, 0.4);
+  }
+  100% {
+    transform: skewX(5deg);
+    box-shadow:
+      0 0 10px rgba(255, 165, 0, 0.5),
+      0 0 20px rgba(255, 165, 0, 0.5),
+      0 0 60px rgba(255, 165, 0, 0.5),
+      0 0 80px rgba(255, 165, 0, 0.5);
+  }
+}
+
+.number-candle {
+  color: #fff0f5;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.5em;
+  width: auto;
+  height: 1.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2em;
+  position: relative;
+  animation: wobble 2s infinite ease-in-out;
+  line-height: 1;
+  box-sizing: border-box;
+  text-shadow: 0 0 1px #ff69b4;
+  margin-top: -0.55em;         /* Raise it above the cake */
+}
+
+.number-candle::after {
+  content: '';
+  position: absolute;
+  bottom: 0.25em; /* adjust to reach the cake top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.01em;
+  height: 0.2em;
+  background-color: #fff0f5;
+  border-radius: 0.05em;
+}
+
+
+#balloonSliderContainer {
+  position: fixed;
+  top: 0.2em;
+  right: 0.2em;
+  z-index: 9999;
+  padding: 0.3em;
+  margin: 0;
+  width: 7em;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 192, 203, 0.2); /* pastel pink background */
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.3em rgba(255, 182, 193, 0.5);
+  backdrop-filter: blur(2px);
+  font-size: 0.75em;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* fun font */
+}
+
+#balloonSliderLabel {
+  margin-bottom: 0.2em;
+  color: #d87ca6; /* soft magenta-pink */
+  font-weight: bold;
+  text-align: center;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+#balloonSlider {
+  width: 100%;
+  height: 0.6em;
+  margin: 0;
+  accent-color: #ffb6c1; /* pastel pink */
+  background: transparent;
+  cursor: pointer;
+}
+
+.birthday-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.champagne-pop {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem; /* base font size */
+}
+
+.bubbles {
+  position: absolute;
+  top: -1.5em;          /* moved up more */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5em;           /* narrower container */
+  height: 2em;
+  pointer-events: none;
+}
+
+.bubbles span {
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: pop;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+/* Smaller bubbles closer together */
+.bubbles span:nth-child(1) {
+  left: 15%;
+  width: 0.2em;
+  height: 0.2em;
+  animation-duration: 2.1s;
+  animation-delay: 0s;
+}
+.bubbles span:nth-child(2) {
+  left: 45%;
+  width: 0.25em;
+  height: 0.25em;
+  animation-duration: 1.8s;
+  animation-delay: 0.4s;
+}
+.bubbles span:nth-child(3) {
+  left: 70%;
+  width: 0.18em;
+  height: 0.18em;
+  animation-duration: 2.3s;
+  animation-delay: 0.7s;
+}
+.bubbles span:nth-child(4) {
+  left: 30%;
+  width: 0.22em;
+  height: 0.22em;
+  animation-duration: 1.9s;
+  animation-delay: 1s;
+}
+
+@keyframes pop {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(0.2em, -1.5em) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* === Rosette Styling: Static & Beautiful === */
+.rosettes {
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* vertical centering */
+}
+
+.rosette {
+  width: 0.84rem;
+  height: 0.84rem;
+  margin-left: -0.21rem;
+  margin-right: -0.21rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #ffd6e0 30%, #ff9eb5 70%);
+  box-shadow:
+    inset 0 -0.125rem 0.25rem rgba(255, 255, 255, 0.6),
+    0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hydrangea-row {
+  display: flex;
+  justify-content: center; /* center horizontally, or space-between if you want */
+  flex-wrap: wrap; /* if you want them to wrap on smaller screens */
+  pointer-events: none;
+}
+
+.hydrangea-cluster {
+  flex: 0 0 2.2rem; /* fixed width */
+  height: 2.2rem;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g fill="none" stroke="%237F8FA6" stroke-width="0.5"><circle cx="16" cy="20" r="6" fill="%23A3BED1"/><circle cx="24" cy="14" r="5" fill="%23B0C7DD"/><circle cx="32" cy="18" r="6" fill="%239DBED6"/><circle cx="40" cy="14" r="5" fill="%23ADC8DF"/><circle cx="48" cy="20" r="6" fill="%23A4BFD3"/><circle cx="24" cy="26" r="5" fill="%23B4CEDF"/><circle cx="32" cy="30" r="6" fill="%239BBED8"/><circle cx="40" cy="26" r="5" fill="%23B1C6DD"/></g></svg>') no-repeat center center;
+  background-size: contain;
+    position: relative;
+}
+
+.sparkler {
+  position: absolute;
+  width: 2.25rem;   /* was 4.5rem */
+  height: 3rem;     /* was 6rem */
+  pointer-events: none;
+  /* left and top remain set inline */
+}
+
+.sparkler-light {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2.25rem;   /* was 4.5rem */
+  height: 2.25rem;  /* was 4.5rem */
+  margin-left: -1.125rem; /* half width */
+}
+
+.sparkler-light::after {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 2.25rem;    /* was 4.5rem */
+  height: 2.25rem;   /* was 4.5rem */
+  background-color: rgba(255, 255, 230, 0.05);
+  animation: sparkler-light-pulsating 2s infinite linear;
+}
+
+.spark {
+  position: absolute;
+  width: 0.025rem;   /* was 0.05rem */
+  height: 0.025rem;  /* was 0.05rem */
+  bottom: 1.075rem;  /* was 2.15rem */
+  left: 1.0875rem;   /* was 2.175rem */
+  transform: rotate(var(--spark-rotate));
+}
+
+.spark::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 0.025rem;    /* was 0.05rem */
+  height: 0.5rem;     /* was 1rem */
+  border-radius: 0.025rem; /* was 0.05rem */
+  opacity: 0;
+  background-color: white;
+    box-shadow: 0 0 6px 2px #fff8a3;
+  transform-origin: bottom center;
+  animation: sparkler-sparkle 0.5s infinite linear;
+  animation-delay: var(--spark-delay);
+}
+
+.sparkler-stick {
+  position: absolute;
+  top: 1.25rem;      /* was 4.5rem */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;  /* was 0.075rem */
+  height: 3.5rem;  /* was 1.25rem */
+  background: #666;
+  border-radius: 0.0125rem; /* was 0.025rem */
+}
+
+@keyframes sparkler-light-pulsating {
+  0%, 100% { transform: scale(2); }
+  25%      { transform: scale(2.1); }
+  75%      { transform: scale(1.9); }
+}
+
+@keyframes sparkler-sparkle {
+  0%   {
+    transform: translateY(-0.125rem) scaleY(0.25);
+    opacity: 0.2;
+  }
+  10%  {
+    transform: translateY(-0.25rem) scaleY(0.5);
+    opacity: 0.75;
+  }
+  30%  {
+    transform: translateY(-0.5rem) scaleY(0.5);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-1rem) scaleY(2);
+    opacity: 0.95;
+  }
+  51% {
+    opacity: 0.2;
+    transform: translateY(-1rem) scaleY(1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(0) scaleY(0.25);
+  }
+}
