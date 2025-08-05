@@ -51,24 +51,6 @@ let heartsIs = false;
 let slides = [];
 let decryptedMessages = []; // Will hold decrypted messages
 
-// decryptImage expects a full path to the .bin file
-async function decryptImage(fullPath, cryptoKey) {
-  const resp = await fetch(fullPath);
-  if (!resp.ok) throw new Error(`Failed to fetch encrypted file: ${fullPath}`);
-
-  const data = await resp.arrayBuffer();
-  const iv = data.slice(0, 12);
-  const encrypted = data.slice(12);
-  const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, cryptoKey, encrypted);
-  return new Blob([decrypted]);
-}
-
-// This builds the full path from a relative path and calls decryptImage
-async function decryptRelativeImage(baseFolder, relativePath, cryptoKey) {
-  const fullPath = `${baseFolder}${relativePath}.bin`;
-  return await decryptImage(fullPath, cryptoKey);
-}
-
 // In preloadCarouselImages, use decryptRelativeImage to keep code clean
 async function preloadCarouselImages() {
   decryptedMessages.length = 0;
@@ -80,8 +62,7 @@ async function preloadCarouselImages() {
       try {
         // item.image is just the relative image path like 'Balloons/IMG_2559.jpeg'
         const blob = await decryptRelativeImage(carouselFolder, item.image, riddleKey);
-        const url = URL.createObjectURL(blob);
-        newItem.image = url;
+        newItem.image = URL.createObjectURL(blob);
       } catch (e) {
         console.error("Failed to decrypt carousel image:", item.image, e);
         newItem.image = null;
@@ -176,36 +157,4 @@ function prevSlide() {
   }
 
   showSlide(currentSlide);
-}
-
-function spawnHearts() {
-  const heart = document.createElement("div");
-  heart.textContent = "❤️";
-  heart.style.position = "fixed";
-  heart.style.top = "-50px";
-  heart.style.fontSize = Math.random() * 20 + 20 + "px";
-  heart.style.opacity = 0.85;
-  heart.style.zIndex = "5";
-  heart.style.pointerEvents = 'none';
-
-  const startLeft = Math.random() * window.innerWidth;
-  heart.style.left = `${startLeft}px`;
-
-  document.body.appendChild(heart);
-
-  let y = -50;
-  const fallSpeed = Math.random() * 1.5 + 0.5;
-  const swayAmount = Math.random() * 2 - 1;
-
-  const fallInterval = setInterval(() => {
-    y += fallSpeed;
-    const sway = Math.sin(y / 20) * swayAmount * 5;
-    heart.style.top = `${y}px`;
-    heart.style.left = `${startLeft + sway}px`;
-
-    if (y > window.innerHeight + 50) {
-      clearInterval(fallInterval);
-      heart.remove();
-    }
-  }, 16);
 }
