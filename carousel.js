@@ -2,7 +2,7 @@ const carouselFolder = "EncryptedPhotos/Carousel/"; // Base folder for encrypted
 
 const messages = [
   { 
-    text: "Pet Rudy 50 times to see your presents",
+    text: "Pet Rudy 15 times to see your presents",
   },
   { 
     text: "I can't wait to build a life with you. From lazy Sunday mornings to chasing dreams together, you're everything I want. Every moment with you feels like home. I love you so much, and I'm so grateful for you. Thank you for being my person. I'm paying for your shopping spree on Saturday—spoil yourself because you deserve it. Love, Evan ❤️",

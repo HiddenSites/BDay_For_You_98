@@ -720,7 +720,7 @@ body {
 #balloon-counter {
   position: fixed;
   top: 0.2em;
-  right: 0.2em;
+  left: 0.2em;
   z-index: 9998;
   display: none;
   align-items: center;

@@ -106,7 +106,7 @@ function completeGame() {
   const completionMessage = document.getElementById("game-completion-message");
   
   if (goButton) {
-    goButton.classList.add("hidden");
+    completionMessage.style.display = "block";
   }
   
   if (completionMessage) {
