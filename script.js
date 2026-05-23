@@ -51,12 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardWrapper.style.display = "flex";
       bgMusic.play();
-      for (let i = 0; i < 50; i++) {
-        spawnBalloon(false, false);
-      }
       document.getElementById("balloonSliderContainer").style.display = "block";
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
-      startBalloonTimers();
       correct = true;
       await preloadBalloonImages();
       await preloadCarouselImages(); 
@@ -88,12 +84,64 @@ const card = document.getElementById("card");
 const bgMusic = document.getElementById("bg-music");
 let cardOpen = false;
 let cardOpened = false;
+let gameCompleted = false; // Track if game has been completed
 
 // Card flip on swipe or drag
 let startX = 0;
 
 function handleStart(e) {
   startX = e.touches ? e.touches[0].clientX : e.clientX;
+}
+
+// Function to complete the game and slow down balloons
+function completeGame() {
+  gameCompleted = true;
+  
+  // Slow down balloons significantly (not all the way - set to 4 seconds)
+  updateBalloonInterval(4);
+  document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
+  
+  // Hide the GO button and show completion message
+  const goButton = document.getElementById("game-start-button");
+  const completionMessage = document.getElementById("game-completion-message");
+  
+  if (goButton) {
+    goButton.classList.add("hidden");
+  }
+  
+  if (completionMessage) {
+    // Create the two-line message: loving message + gift
+    const lovingMessage = "I love you so much and am so grateful for you.";
+    const giftMessage = "I'm paying for your shopping spree on Saturday!";
+    completionMessage.innerHTML = `${lovingMessage}<br>${giftMessage}`;
+    completionMessage.style.display = "block";
+  }
+}
+
+// Function to start the game from GO button
+function startGameFromButton() {
+  // Hide GO button
+  const goButton = document.getElementById("game-start-button");
+  if (goButton) {
+    goButton.classList.add("hidden");
+  }
+  
+  // Show counter
+  const counterElement = document.getElementById('balloon-counter');
+  if (counterElement) {
+    counterElement.classList.add('visible');
+  }
+  
+  // Stop the regular slider-controlled timers
+  clearInterval(timerA);
+  clearInterval(timerB);
+  
+  // Start the enhanced game-mode spawning
+  startGameBalloonSpawning();
+  
+  // Set faster balloon interval
+  updateBalloonInterval(1.8);
+  document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
 }
 
 function handleMove(e) {
@@ -106,33 +154,9 @@ function handleMove(e) {
   if (!cardOpen && diffX < -50) {
     card.classList.add("open");
     cardOpen = true;
-
-    if (!cardOpened) {
-      cardOpened = true;
-      gameStarted = true;
-      allowDualBalloons = true;
-      
-      // Show the counter and start game
-      const counterElement = document.getElementById('balloon-counter');
-      if (counterElement) {
-        counterElement.classList.add('visible');
-      }
-      
-      // Stop the regular slider-controlled timers
-      clearInterval(timerA);
-      clearInterval(timerB);
-      
-      // Start the enhanced game-mode spawning
-      startGameBalloonSpawning();
-      
-      updateBalloonInterval(1.8);
-      document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
-      //setInterval(spawnFallingFlower, 1000);
-    }
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
     cardOpen = false;
-    // Counter stays visible after game starts
   }
 }
 
@@ -157,4 +181,16 @@ document.getElementById("balloonSlider").addEventListener("input", function () {
   const sliderValue = parseInt(this.value);
   setBalloonInterval(getIntervalFromSliderValue(sliderValue));
   startBalloonTimers();
+});
+
+// GO Button event listener
+document.addEventListener("DOMContentLoaded", () => {
+  const goButton = document.getElementById("game-start-button");
+  if (goButton) {
+    goButton.addEventListener("click", () => {
+      gameStarted = true;
+      allowDualBalloons = true;
+      startGameFromButton();
+    });
+  }
 });

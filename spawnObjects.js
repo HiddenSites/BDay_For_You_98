@@ -10,6 +10,17 @@ const pastelColors = [
   "#FFE5B4", // Apricot (warmer peach replacement)
 ];
 
+// Balloon size constants
+const REGULAR_BALLOON_MIN_WIDTH = 30;
+const REGULAR_BALLOON_MIN_HEIGHT = 41;
+const REGULAR_BALLOON_MAX_WIDTH = 45;
+const REGULAR_BALLOON_MAX_HEIGHT = 60;
+
+const PHOTO_BALLOON_MIN_WIDTH = 12;
+const PHOTO_BALLOON_MIN_HEIGHT = 16;
+const PHOTO_BALLOON_MAX_WIDTH = 15;
+const PHOTO_BALLOON_MAX_HEIGHT = 21;
+
 let balloonInterval = 2000; // default 0.5s in ms
 let timerA, timerB;
 
@@ -19,9 +30,10 @@ const BALLOON_INDEX_FILE = `${BALLOON_FOLDER}/index.json`;
 
 // Balloon counter tracking
 let photoBalloonCount = 0;
-const BALLOON_UNLOCK_THRESHOLD = 3;
+const BALLOON_UNLOCK_THRESHOLD = 15; // Game completes at 15 photo balloons
 let balloonUnlocked = false;
 let gameStarted = false; // Track if card has been opened
+let gameCompletionTriggered = false; // Prevent multiple completion calls
 
 // Timers for balanced spawning
 let regularBalloonTimer;
@@ -126,10 +138,10 @@ async function spawnBalloon(useImage = false, isStart = true) {
     balloon.style.backgroundSize = 'cover';
     balloon.style.backgroundPosition = 'center';
     balloon.style.backgroundRepeat = 'no-repeat';
-    balloon.style.minWidth = '80px';
-    balloon.style.minHeight = '110px';
-    balloon.style.maxWidth = '120px';
-    balloon.style.maxHeight = '160px';
+    balloon.style.minWidth = `${PHOTO_BALLOON_MIN_WIDTH}px`;
+    balloon.style.minHeight = `${PHOTO_BALLOON_MIN_HEIGHT}px`;
+    balloon.style.maxWidth = `${PHOTO_BALLOON_MAX_WIDTH}px`;
+    balloon.style.maxHeight = `${PHOTO_BALLOON_MAX_HEIGHT}px`;
     balloon.style.backgroundColor = 'transparent';
     isPhotoBalloon = true;
   } else {
@@ -161,8 +173,17 @@ async function spawnBalloon(useImage = false, isStart = true) {
     });
   });
 
-  // Add pop-on-click logic
-  balloon.addEventListener('click', () => {
+  // Add pop-on-click logic with improved event handling
+  balloon.addEventListener('click', (event) => {
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    
+    // Check if balloon hasn't already been clicked (prevent double-counting)
+    if (balloon.dataset.clicked === 'true') {
+      return;
+    }
+    balloon.dataset.clicked = 'true';
+    
     const pop = new Audio(isPhotoBalloon ? 'Audio/love.mp3' : 'Audio/pop.mp3');
     pop.play();
     
@@ -171,10 +192,13 @@ async function spawnBalloon(useImage = false, isStart = true) {
       photoBalloonCount++;
       updateBalloonCounter();
       
-      // Check if unlocked
-      if (photoBalloonCount >= BALLOON_UNLOCK_THRESHOLD && !balloonUnlocked) {
-        balloonUnlocked = true;
-        handleBalloonUnlock();
+      // Check if game should complete (reached 15 photo balloons)
+      if (photoBalloonCount >= BALLOON_UNLOCK_THRESHOLD && !gameCompletionTriggered) {
+        gameCompletionTriggered = true;
+        // Call completeGame from script.js
+        if (typeof completeGame === 'function') {
+          completeGame();
+        }
       }
     }
     
@@ -184,7 +208,7 @@ async function spawnBalloon(useImage = false, isStart = true) {
       duration: 0.3,
       onComplete: () => balloon.remove()
     });
-  });
+  }, true); // Use capture phase for better event handling
 }
 
 function updateBalloonCounter() {
@@ -193,8 +217,9 @@ function updateBalloonCounter() {
   if (counterDisplay) {
     counterDisplay.textContent = photoBalloonCount;
     // Update the max display when first called
-    if (counterMax && counterMax.textContent === '/50') {
+    if (counterMax && !counterMax.dataset.updated) {
       counterMax.textContent = `/${BALLOON_UNLOCK_THRESHOLD}`;
+      counterMax.dataset.updated = 'true';
     }
     // Add visual feedback at milestone
     if (photoBalloonCount === BALLOON_UNLOCK_THRESHOLD) {
