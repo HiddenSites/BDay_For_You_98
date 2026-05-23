@@ -2,48 +2,11 @@ const carouselFolder = "EncryptedPhotos/Carousel/"; // Base folder for encrypted
 
 const messages = [
   { 
-    text: "You're the shit!!!",
-    image: "IMG_7170.jpeg"
+    text: "Pet Rudy 50 times to see your presents",
   },
   { 
-    text: "I love getting cuddled up and cozy with you.",
-    image: "IMG_3063.jpeg"
+    text: "I can't wait to build a life with you. From lazy Sunday mornings to chasing dreams together, you're everything I want. Every moment with you feels like home. I love you so much, and I'm so grateful for you. Thank you for being my person. I'm paying for your shopping spree on Saturday—spoil yourself because you deserve it. Love, Evan ❤️",
   },
-  { 
-    text: "Even when you're too sleepy.",
-    image: "IMG_3137.jpeg"
-  },
-  { 
-    text: "You still always look cute.",
-    image: "IMG_3160.jpeg"
-  },
-  { 
-    text: "You're a great cook and we always make things tasty together.",
-    image: "IMG_3034.jpeg"
-  },
-  { 
-    text: "I have so much fun with you, even doing absolutely nothing.",
-    image: "IMG_3008.jpeg"
-  },
-  { 
-    text: "You're always improving our home and lives.",
-    image: "IMG_3223.jpeg"
-  },
-  { 
-    text: "And you always push me to go outside of my comfort zone.",
-    image: "IMG_1563.jpeg"
-  },
-  { 
-    text: "We’ll do bigger things, but I treasure even our smallest adventures.",
-    image: "IMG_3236.jpeg"
-  },
-  { 
-    text: "I'm so happy you brought lil Rudy into my life. You're the best mom she could have asked for.",
-    image: "baby.jpeg"
-  },
-  { 
-    text: "You always make me laugh and I cherish all of my memories with you. I love you so much and can't wait to keep building our lives together.\n\n\n\n\nLove,\nEvan & Rudy"
-  }
 ];
 
 let currentSlide = 0;
@@ -118,11 +81,12 @@ async function renderCarousel() {
     else if (diff < -50) nextSlide();
   });
 
-  // Navigation buttons
+  // Navigation buttons - DISABLED for balloon popping experience
   const navButtons = document.querySelectorAll('.carousel-nav button');
   if (navButtons.length === 2) {
-    navButtons[0].addEventListener('click', prevSlide);
-    navButtons[1].addEventListener('click', nextSlide);
+    navButtons[0].style.display = 'none';
+    navButtons[1].style.display = 'none';
+    // Buttons are disabled - navigate only via carousel completion
   }
 }
 
@@ -138,9 +102,7 @@ function nextSlide() {
   currentSlide = (currentSlide + 1) % slides.length;
 
   if (currentSlide === slides.length - 1 && !heartsIs) {
-    setInterval(spawnHearts, 1000);
-    heartsIs = true;
-    for (let i = 0; i < 50; i++) spawnHearts();
+
   }
 
   showSlide(currentSlide);
@@ -151,10 +113,6 @@ function prevSlide() {
   if (currentSlide === 0 && !heartsIs) return;
 
   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-
-  if (currentSlide === slides.length - 1) {
-    for (let i = 0; i < 50; i++) spawnHearts();
-  }
 
   showSlide(currentSlide);
 }

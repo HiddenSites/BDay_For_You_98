@@ -10,12 +10,22 @@ const pastelColors = [
   "#FFE5B4", // Apricot (warmer peach replacement)
 ];
 
-let balloonInterval = 1200; // default 0.5s in ms
+let balloonInterval = 2000; // default 0.5s in ms
 let timerA, timerB;
 
 const balloonCache = [];
 const BALLOON_FOLDER = 'EncryptedPhotos/Balloons';
 const BALLOON_INDEX_FILE = `${BALLOON_FOLDER}/index.json`;
+
+// Balloon counter tracking
+let photoBalloonCount = 0;
+const BALLOON_UNLOCK_THRESHOLD = 3;
+let balloonUnlocked = false;
+let gameStarted = false; // Track if card has been opened
+
+// Timers for balanced spawning
+let regularBalloonTimer;
+let photoBalloonTimer;
 
 function setBalloonInterval(interval){
   balloonInterval = interval;
@@ -52,6 +62,25 @@ function startBalloonTimers() {
   if (allowDualBalloons) {
     timerB = setInterval(() => spawnBalloon(true), balloonInterval * 1.5);
   }
+}
+
+// Enhanced spawn rates for game mode (when card is opened)
+function startGameBalloonSpawning() {
+  // Clear any existing timers
+  clearInterval(regularBalloonTimer);
+  clearInterval(photoBalloonTimer);
+  
+  // Spawn regular balloons frequently (every 300ms - 2.5x faster)
+  regularBalloonTimer = setInterval(() => spawnBalloon(false, true), 300);
+  
+  // Spawn photo balloons less frequently (every 1400ms - 2.5x faster) - makes game harder
+  photoBalloonTimer = setInterval(() => spawnBalloon(true, true), 1400);
+}
+
+// Stop game-mode spawning
+function stopGameBalloonSpawning() {
+  clearInterval(regularBalloonTimer);
+  clearInterval(photoBalloonTimer);
 }
 
 function updateBalloonInterval(newSeconds) {
@@ -136,6 +165,19 @@ async function spawnBalloon(useImage = false, isStart = true) {
   balloon.addEventListener('click', () => {
     const pop = new Audio(isPhotoBalloon ? 'Audio/love.mp3' : 'Audio/pop.mp3');
     pop.play();
+    
+    // Increment counter for photo balloons only
+    if (isPhotoBalloon) {
+      photoBalloonCount++;
+      updateBalloonCounter();
+      
+      // Check if unlocked
+      if (photoBalloonCount >= BALLOON_UNLOCK_THRESHOLD && !balloonUnlocked) {
+        balloonUnlocked = true;
+        handleBalloonUnlock();
+      }
+    }
+    
     gsap.to(balloon, {
       scale: 0,
       opacity: 0,
@@ -143,6 +185,34 @@ async function spawnBalloon(useImage = false, isStart = true) {
       onComplete: () => balloon.remove()
     });
   });
+}
+
+function updateBalloonCounter() {
+  const counterDisplay = document.getElementById('balloon-counter-display');
+  const counterMax = document.getElementById('balloon-counter-max');
+  if (counterDisplay) {
+    counterDisplay.textContent = photoBalloonCount;
+    // Update the max display when first called
+    if (counterMax && counterMax.textContent === '/50') {
+      counterMax.textContent = `/${BALLOON_UNLOCK_THRESHOLD}`;
+    }
+    // Add visual feedback at milestone
+    if (photoBalloonCount === BALLOON_UNLOCK_THRESHOLD) {
+      counterDisplay.classList.add('milestone-reached');
+    }
+  }
+}
+
+function handleBalloonUnlock() {
+  // App is now fully unlocked
+  console.log(`🎉 ${BALLOON_UNLOCK_THRESHOLD} balloons popped! App unlocked!`);
+  const counterDisplay = document.getElementById('balloon-counter-display');
+  if (counterDisplay) {
+    counterDisplay.classList.add('unlocked');
+  }
+  
+  // Advance carousel to show the love message
+  nextSlide();
 }
 
 function spawnHearts() {

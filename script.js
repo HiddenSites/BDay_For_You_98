@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardWrapper.style.display = "flex";
       bgMusic.play();
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 50; i++) {
         spawnBalloon(false, false);
       }
       document.getElementById("balloonSliderContainer").style.display = "block";
@@ -106,22 +106,33 @@ function handleMove(e) {
   if (!cardOpen && diffX < -50) {
     card.classList.add("open");
     cardOpen = true;
-    for (let i = 0; i < 30; i++) {
-        spawnBalloon(true);
-      }
+
     if (!cardOpened) {
       cardOpened = true;
+      gameStarted = true;
       allowDualBalloons = true;
+      
+      // Show the counter and start game
+      const counterElement = document.getElementById('balloon-counter');
+      if (counterElement) {
+        counterElement.classList.add('visible');
+      }
+      
+      // Stop the regular slider-controlled timers
+      clearInterval(timerA);
+      clearInterval(timerB);
+      
+      // Start the enhanced game-mode spawning
+      startGameBalloonSpawning();
+      
       updateBalloonInterval(1.8);
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
-      setInterval(spawnFallingFlower, 1000);
+      //setInterval(spawnFallingFlower, 1000);
     }
   } else if (cardOpen && diffX > 50) {
     card.classList.remove("open");
     cardOpen = false;
-    for (let i = 0; i < 40; i++) {
-        spawnFallingFlower();
-      }
+    // Counter stays visible after game starts
   }
 }
 
