@@ -178,11 +178,12 @@ async function spawnBalloon(useImage = false, isStart = true) {
     });
   });
 
-let balloonInteraction = false; // ✅ ADDED FIX (shared global)
 
 function handleBalloonPop(event) {
-  balloonInteraction = true; // ✅ ADDED
-    event.stopPropagation();
+balloonInteraction = true;
+setTimeout(() => {
+  balloonInteraction = false;
+}, 0);    event.stopPropagation();
     event.stopImmediatePropagation();
     
     // Check if balloon hasn't already been clicked (prevent double-counting)
