@@ -122,7 +122,7 @@ function getIntervalFromSliderValue(value) {
   const logInterval = minLog + scale * (maxLog - minLog);
 
   return Math.exp(logInterval);
-}
+}}
 
 async function spawnBalloon(useImage = false, isStart = true) {
   const balloon = document.createElement('div');
@@ -173,8 +173,8 @@ async function spawnBalloon(useImage = false, isStart = true) {
     });
   });
 
-  // Add pop-on-click logic with improved event handling
-  balloon.addEventListener('click', (event) => {
+  // Add pop-on-click and pop-on-touch logic with improved event handling
+  function handleBalloonPop(event) {
     event.stopPropagation();
     event.stopImmediatePropagation();
     
@@ -208,7 +208,10 @@ async function spawnBalloon(useImage = false, isStart = true) {
       duration: 0.3,
       onComplete: () => balloon.remove()
     });
-  }, true); // Use capture phase for better event handling
+  }
+  
+  balloon.addEventListener('click', handleBalloonPop, true);
+  balloon.addEventListener('touchstart', handleBalloonPop, { passive: false, capture: true });
 }
 
 function updateBalloonCounter() {

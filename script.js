@@ -98,8 +98,11 @@ function handleStart(e) {
 function completeGame() {
   gameCompleted = true;
   
-  // Slow down balloons significantly (not all the way - set to 4 seconds)
-  updateBalloonInterval(4);
+  // Stop the game spawning timers to reduce balloon count
+  stopGameBalloonSpawning();
+  
+  // Set to very low speed (8 seconds between balloons)
+  updateBalloonInterval(8);
   document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
   
   // Hide the GO button

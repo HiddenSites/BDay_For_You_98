@@ -148,10 +148,6 @@ body {
 .balloon {
   width: 8vw;
   height: 11vw;
-  min-width: 30px;
-  min-height: 41px;
-  max-width: 45px;
-  max-height: 60px;
   border-radius: 50% 50% 45% 45%;
   position: absolute;
   top: 0;
@@ -812,7 +808,7 @@ body {
 /* GO Button Styling */
 .game-start-button {
   position: absolute;
-  bottom: 100px;
+  bottom: 150px;
   background: linear-gradient(135deg, #FF69B4, #FF1493);
   color: white;
   border: none;
