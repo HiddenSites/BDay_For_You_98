@@ -799,10 +799,20 @@ body {
   }
 }
 
+/* Pet Instruction Text */
+.pet-instruction {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #d87ca6;
+  margin: 1rem 0;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
 /* GO Button Styling */
 .game-start-button {
   position: absolute;
-  bottom: 40px;
+  bottom: 100px;
   background: linear-gradient(135deg, #FF69B4, #FF1493);
   color: white;
   border: none;
@@ -815,6 +825,11 @@ body {
   transition: all 0.3s ease;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   z-index: 100;
+}
+
+.carousel-slide p {
+    white-space: pre-line;
+    font-size: 0.8rem;
 }
 
 .game-start-button:hover {

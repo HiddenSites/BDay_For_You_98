@@ -1,12 +1,20 @@
 const carouselFolder = "EncryptedPhotos/Carousel/"; // Base folder for encrypted images
 
 const messages = [
+
   { 
     text: "Pet Rudy 15 times to see your presents",
   },
-  { 
-    text: "I can't wait to build a life with you. From lazy Sunday mornings to chasing dreams together, you're everything I want. Every moment with you feels like home. I love you so much, and I'm so grateful for you. Thank you for being my person. I'm paying for your shopping spree on Saturday—spoil yourself because you deserve it. Love, Evan ❤️",
-  },
+{
+  text: `No matter what you think when you look in the mirror, you're truly always gorgeous, and funny—but you already know that lol.
+
+I'm so grateful that Beard Meats Food's favourite Halifax bar brought us together, and I can't wait to keep building our future together. There's nobody else I'd rather have beside me through every challenge and every adventure. I love you so much, and I can't wait to spend the rest of my life with you. ❤️
+
+As for your birthday present... it's not a ring yet, but I am paying for whatever you bought this weekend! You deserve to spoil yourself a little, even I don't always make you feel that way.
+
+Love,
+Evan ❤️`,
+},
 ];
 
 let currentSlide = 0;

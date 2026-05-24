@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("balloonSliderContainer").style.display = "block";
       document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
       correct = true;
+      startBalloonTimers(); // Start spawning balloons on the front
       await preloadBalloonImages();
       await preloadCarouselImages(); 
       await renderCarousel();
@@ -101,20 +102,15 @@ function completeGame() {
   updateBalloonInterval(4);
   document.getElementById("balloonSlider").value = getSliderValueFromInterval(getBalloonInterval());
   
-  // Hide the GO button and show completion message
+  // Hide the GO button
   const goButton = document.getElementById("game-start-button");
-  const completionMessage = document.getElementById("game-completion-message");
-  
   if (goButton) {
-    completionMessage.style.display = "block";
+    goButton.classList.add("hidden");
   }
   
-  if (completionMessage) {
-    // Create the two-line message: loving message + gift
-    const lovingMessage = "I love you so much and am so grateful for you.";
-    const giftMessage = "I'm paying for your shopping spree on Saturday!";
-    completionMessage.innerHTML = `${lovingMessage}<br>${giftMessage}`;
-    completionMessage.style.display = "block";
+  // Advance to the next carousel message
+  if (typeof nextSlide === 'function') {
+    nextSlide();
   }
 }
 
