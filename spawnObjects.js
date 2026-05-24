@@ -122,7 +122,7 @@ function getIntervalFromSliderValue(value) {
   const logInterval = minLog + scale * (maxLog - minLog);
 
   return Math.exp(logInterval);
-}}
+}
 
 async function spawnBalloon(useImage = false, isStart = true) {
   const balloon = document.createElement('div');
