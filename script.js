@@ -92,9 +92,6 @@ let gameCompleted = false; // Track if game has been completed
 let startX = 0;
 let touchOnBalloon = false;
 
-document.addEventListener("touchend", handleEnd);
-document.addEventListener("mouseup", handleEnd);
-
 function handleStart(e) {
   startX = e.touches ? e.touches[0].clientX : e.clientX;
   // Check if touch started on a balloon
