@@ -89,9 +89,13 @@ let gameCompleted = false; // Track if game has been completed
 
 // Card flip on swipe or drag
 let startX = 0;
+let touchOnBalloon = false;
 
 function handleStart(e) {
   startX = e.touches ? e.touches[0].clientX : e.clientX;
+  // Check if touch started on a balloon
+  const touchTarget = e.touches ? document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY) : e.target;
+  touchOnBalloon = touchTarget && touchTarget.classList && touchTarget.classList.contains('balloon');
 }
 
 // Function to complete the game and slow down balloons
@@ -147,7 +151,13 @@ function handleMove(e) {
 
   const currentX = e.touches ? e.touches[0].clientX : e.clientX;
   const diffX = currentX - startX;
-    if (!correct){
+  
+  // Don't open/close card if interacting with a balloon
+  if (touchOnBalloon) {
+    return;
+  }
+  
+  if (!correct){
     return;
   }
   if (!cardOpen && diffX < -50) {

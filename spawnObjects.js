@@ -11,15 +11,15 @@ const pastelColors = [
 ];
 
 // Balloon size constants
-const REGULAR_BALLOON_MIN_WIDTH = 60;
-const REGULAR_BALLOON_MIN_HEIGHT = 80;
-const REGULAR_BALLOON_MAX_WIDTH = 75;
-const REGULAR_BALLOON_MAX_HEIGHT = 100;
+const REGULAR_BALLOON_MIN_WIDTH = 120;
+const REGULAR_BALLOON_MIN_HEIGHT = 160;
+const REGULAR_BALLOON_MAX_WIDTH = 150;
+const REGULAR_BALLOON_MAX_HEIGHT = 200;
 
-const PHOTO_BALLOON_MIN_WIDTH = 30;
-const PHOTO_BALLOON_MIN_HEIGHT = 45;
-const PHOTO_BALLOON_MAX_WIDTH = 50;
-const PHOTO_BALLOON_MAX_HEIGHT = 70;
+const PHOTO_BALLOON_MIN_WIDTH = 60;
+const PHOTO_BALLOON_MIN_HEIGHT = 90;
+const PHOTO_BALLOON_MAX_WIDTH = 100;
+const PHOTO_BALLOON_MAX_HEIGHT = 140;
 
 let balloonInterval = 2000; // default 0.5s in ms
 let timerA, timerB;
@@ -146,6 +146,10 @@ async function spawnBalloon(useImage = false, isStart = true) {
     isPhotoBalloon = true;
   } else {
     balloon.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+    balloon.style.minWidth = `${REGULAR_BALLOON_MIN_WIDTH}px`;
+    balloon.style.minHeight = `${REGULAR_BALLOON_MIN_HEIGHT}px`;
+    balloon.style.maxWidth = `${REGULAR_BALLOON_MAX_WIDTH}px`;
+    balloon.style.maxHeight = `${REGULAR_BALLOON_MAX_HEIGHT}px`;
   }
 
   document.body.appendChild(balloon);
