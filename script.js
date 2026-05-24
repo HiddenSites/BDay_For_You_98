@@ -1,6 +1,7 @@
 let correct = false;
 let allowDualBalloons = false;
 let riddleKey; // global key once solved
+let balloonInteraction = false;
 // SHA-256 hash (in hex)
 const correctAnswerHash = "10f3525281a9d1d581d7a8de31af7f64938691f1f50790aeb5de064f02dbfbb8";
 
@@ -91,6 +92,9 @@ let gameCompleted = false; // Track if game has been completed
 let startX = 0;
 let touchOnBalloon = false;
 
+document.addEventListener("touchend", handleEnd);
+document.addEventListener("mouseup", handleEnd);
+
 function handleStart(e) {
   startX = e.touches ? e.touches[0].clientX : e.clientX;
   // Check if touch started on a balloon
@@ -149,6 +153,8 @@ function startGameFromButton() {
 
 function handleMove(e) {
 
+  if (balloonInteraction) return;
+
   const currentX = e.touches ? e.touches[0].clientX : e.clientX;
   const diffX = currentX - startX;
   
@@ -173,6 +179,15 @@ document.addEventListener("mousedown", handleStart);
 document.addEventListener("mousemove", handleMove);
 document.addEventListener("touchstart", handleStart);
 document.addEventListener("touchmove", handleMove);
+
+// ✅ RESET FLAG
+document.addEventListener("touchend", () => {
+  balloonInteraction = false;
+});
+
+document.addEventListener("mouseup", () => {
+  balloonInteraction = false;
+});
 
 const balloonSlider = document.getElementById("balloonSlider");
 

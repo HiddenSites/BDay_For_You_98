@@ -11,10 +11,10 @@ const pastelColors = [
 ];
 
 // Balloon size constants
-const REGULAR_BALLOON_MIN_WIDTH = 120;
-const REGULAR_BALLOON_MIN_HEIGHT = 160;
-const REGULAR_BALLOON_MAX_WIDTH = 150;
-const REGULAR_BALLOON_MAX_HEIGHT = 200;
+const REGULAR_BALLOON_MIN_WIDTH = 100;
+const REGULAR_BALLOON_MIN_HEIGHT = 130;
+const REGULAR_BALLOON_MAX_WIDTH = 120;
+const REGULAR_BALLOON_MAX_HEIGHT = 150;
 
 const PHOTO_BALLOON_MIN_WIDTH = 60;
 const PHOTO_BALLOON_MIN_HEIGHT = 90;
@@ -23,6 +23,7 @@ const PHOTO_BALLOON_MAX_HEIGHT = 140;
 
 let balloonInterval = 2000; // default 0.5s in ms
 let timerA, timerB;
+
 
 const balloonCache = [];
 const BALLOON_FOLDER = 'EncryptedPhotos/Balloons';
@@ -177,8 +178,10 @@ async function spawnBalloon(useImage = false, isStart = true) {
     });
   });
 
-  // Add pop-on-click and pop-on-touch logic with improved event handling
-  function handleBalloonPop(event) {
+let balloonInteraction = false; // ✅ ADDED FIX (shared global)
+
+function handleBalloonPop(event) {
+  balloonInteraction = true; // ✅ ADDED
     event.stopPropagation();
     event.stopImmediatePropagation();
     
